@@ -1,6 +1,6 @@
 <% include partials/header %>
 
-<header class = 'jumbotron container' style = margin-top:70px;>
+<header class = 'jumbotron container margin-top'>
   <div class = "container">
       <h1><i class="fas fa-fire"></i>  Welcome to YelpCamp</h1>
       <p>
@@ -11,11 +11,14 @@
     <div class = "container">
         <div class="row flex">
             <% campgrounds.forEach(function(camp){ %>
-                <div class="col-md-4 col-sm-6">     
-                    <div class = 'img-thumbnail rounded img-fluid'>
+                <div class="col-md-3 col-sm-6">     
+                    <div class = 'rounded img-fluid'>
                         <img src = <%= camp.image %>>
-                         <div class = 'caption'>
-                            <h4><%= camp.place  %></h4>
+                        <div>    
+                            <div align = "center">
+                                <h4><%= camp.place  %></h4>
+                                <a class = "btn btn-primary" href = "/campgrounds/<%= camp._id %>">View</a>
+                            </div>
                         </div>
                     </div>
                 </div>

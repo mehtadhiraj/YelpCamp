@@ -1,4 +1,3 @@
-<% include header%>
 
 <footer class = 'jumbotron container'>
     <div class = 'container'>
@@ -7,17 +6,20 @@
     
     
     <form method = 'POST' action = '/campgrounds' align = 'center'>
-        <div class = 'table-responsive container'>
+        <div class = 'table-responsive container col-md-6'>
             <table align = 'center' class = 'container'>
-                <tr>
-                    <td><input type = 'text' name = 'place' placeholder = '  Camp Place'><br><br></td>
+                <tr class = "form-group">
+                    <td><input class = "form-control" type = 'text' name = 'place' placeholder = '  Camp Place'><br><br></td>
                 </tr>
-                <tr></tr>
-                    <td><input type = 'text' name = 'image' placeholder = '  Image URL'><br><br></td>
+                <tr class = "form-group">
+                    <td><input class = "form-control" type = 'text' name = 'image' placeholder = '  Image URL'><br><br></td>
+                </tr>
+                <tr class = "form-group">
+                    <td><textarea class = "form-control" name = 'description' placeholder = '  Description'></textarea><br><br></td>
                 </tr>
             </table>
-            <p>
-                <button class="btn btn-outline-secondary">Submit</button>            
+            <p class = "form-group">
+                <button class="btn btn-lg btn-outline-secondary btn-block container">Submit</button>            
             </p>
         </div>
     </form>
