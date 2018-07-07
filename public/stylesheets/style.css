@@ -5,8 +5,17 @@
 .margin-top{
     margin-top:70px;
 }
-img {
-    margin:20px;
-    height: 30%;
-    width:30%;
+
+.margin{
+    margin:5px;
+}
+
+.img-thumbnail img{
+    width:100%;
+}
+.img-thumbnail{
+    padding:0px;
+}
+.img-thumbnail .caption{
+    padding:9px;
 }
