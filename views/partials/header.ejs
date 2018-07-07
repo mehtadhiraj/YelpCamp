@@ -16,15 +16,21 @@
     </a>
     <div class="collapse navbar-collapse navbar-right" id="navbarNav">
         <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-            <li class="nav-item active">
-                <a class="nav-link btn btn-light" href="#">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn btn-light" href="#">Sign Up</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link btn btn-light" href="#">Logout</a>
-            </li>
+            <% if(!currentUser) { %>
+                <li class="nav-item active">
+                    <a class="nav-link btn btn-light" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-light" href="/register">Sign Up</a>
+                </li>
+            <% }else { %>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-light" href="#">Welcome <%= currentUser.username %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-light" href="/logout">Logout</a>
+                </li>
+            <% } %>
         </ul>
     </div>
 </nav>
