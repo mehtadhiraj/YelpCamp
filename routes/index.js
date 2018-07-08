@@ -21,9 +21,11 @@ router.post("/register", function(req, res) {
             console.log(err);
             return res.render('register')
         }else{
-            res.redirect('/campgrounds')
+            passport.authenticate('local')(req, res, function(){
+              res.redirect('/campgrounds');  
+            });
         }
-    })
+    });
 });
 
 //Login form
