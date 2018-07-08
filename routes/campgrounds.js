@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Campground = require("../models/Campgrounds");
+var mogoose = require("mongoose");
 //Call to a campgrounds page
 router.get('/', function(req,res){
     // Get campgrounds from database
@@ -45,6 +46,35 @@ router.get("/:id",function(req, res){
     });
 });
 
+//Edit campgorund 
+router.get('/edit/:id', checkCampgroundOwnership, function(req, res){
+        Campground.findById(req.params.id, function(err, campground){
+           res.render('campgrounds/edit', {campground:campground});
+       });
+});
+
+//update Campground
+router.put('/edit/:id', checkCampgroundOwnership, function(req, res){
+    Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err){
+        if(err){
+            console.log(err);
+        }else{
+            res.redirect('/campgrounds/'+req.params.id);
+        }
+    })
+});
+
+//Destroy Campground
+router.delete('/delete/:id', checkCampgroundOwnership, function(req, res){
+    Campground.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            console.log(err);
+        }else{
+            res.redirect('/campgrounds');
+        }
+    });
+})
+
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
@@ -52,5 +82,23 @@ function isLoggedIn(req, res, next){
     res.redirect('/login');
 }
 
+function checkCampgroundOwnership(req, res, next){
+    if(req.isAuthenticated()){
+        Campground.findById(req.params.id, function(err, campground){
+           if(err){
+               console.log(err);
+           }else{
+                //If loged in does user own campground
+                if(campground.user.id.equals(req.user._id)){
+                   next(); 
+                }else{
+                    res.redirect('back');    
+                }
+           }
+       });
+    }else{
+        res.redirect('back');
+    }   
+}
 
 module.exports = router;

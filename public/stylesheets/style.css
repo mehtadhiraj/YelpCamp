@@ -19,3 +19,25 @@
 .img-thumbnail .caption{
     padding:9px;
 }
+
+.display-inline {
+    display: inline;
+}
+
+.height {
+    height: 200px;
+}
+
+.background{
+    background-image: url("https://images.unsplash.com/photo-1469321589923-e19da1f4bfdc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4a713a1ded91c248aaa96841d8926288&auto=format&fit=crop&w=500&q=60");
+}
+
+#newCampHeader {
+    padding-top: 20px;
+    color: white;
+}
+
+.campgroundgBg {
+    background-image: url("https://images.unsplash.com/photo-1457964121122-e7f8269faed3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6144b6ca34cafb891ab172c17a462fe1&auto=format&fit=crop&w=500&q=60");
+    background-size: cover;
+}

@@ -40,6 +40,9 @@ router.post("/", isLoggedIn, function(req, res){
     });
 });
 
+//Edit comment route
+router.get('/edit/:comment_id')
+
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();

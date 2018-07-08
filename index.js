@@ -9,8 +9,9 @@ var express               = require('express'),
     seedDB                = require("./seeds"),
     passport              = require("passport"),
     LocalStrategy         = require("passport-local"),
-    passportLocalMongoose = require("passport-local-mongoose");
-    
+    passportLocalMongoose = require("passport-local-mongoose"),
+    methodOverride        = require("method-override");
+                            
 var campgroundRoutes      = require("./routes/campgrounds"),
     commentsRoutes        = require("./routes/comments"),
     authRoutes            = require("./routes/index");
@@ -20,7 +21,7 @@ mongoose.connect("mongodb://localhost/yelp_camp");
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static(__dirname + "/public"));
-
+app.use(methodOverride("_method"));
 //Calling a seed function from a sedds.js
 //seedDB();
 
