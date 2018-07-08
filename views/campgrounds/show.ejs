@@ -44,14 +44,15 @@
                             <strong><%= comment.name.username %></strong>
                             <span class="float-right">
                                 10 days ago<br>
-                                <form class="display-inline" action="/campgrounds/delete/<%= campgrounds._id %>?_method=DELETE" method="POST">
-                                    <button class="btn btn-sm btn-danger">Delete</button>
-                                </form>
-                                <a href="edit/<%= campgrounds._id %>" class="btn btn-sm btn-warning">Edit</a>
+                                <% if(currentUser && comment.name.id.equals(currentUser._id)) { %>
+                                    <form class="display-inline" action="/campgrounds/<%= campgrounds._id %>/comments/delete/<%= comment._id%>?_method=DELETE" method="POST">
+                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                    <a href="/campgrounds/<%= campgrounds._id %>/comments/edit/<%= comment._id %>" class="btn btn-sm btn-warning">Edit</a>
+                                <% } %>
                             </span>
                             <p><%= comment.text %></p>
                         </div>
-                        
                     </div>
                 <% }); %>
             </div>
