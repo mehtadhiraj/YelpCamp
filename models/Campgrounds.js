@@ -16,8 +16,16 @@ var campgroundSchema = new mongoose.Schema({
    location: {
        type:String
    },
-   latitude: Number,
-   longitude: Number,
+   latitude:{
+       type: Number
+    },
+   longitude: {
+       type: Number
+    },
+    createdAt:{
+      type: Date,
+      default: Date.now
+    },
    comments:[
         {
             type:mongoose.Schema.Types.ObjectId,

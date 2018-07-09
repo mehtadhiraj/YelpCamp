@@ -15,7 +15,6 @@ var express               = require('express'),
     LocalStrategy         = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose"),
     methodOverride        = require("method-override");
-                            
 var campgroundRoutes      = require("./routes/campgrounds"),
     commentsRoutes        = require("./routes/comments"),
     authRoutes            = require("./routes/index");
@@ -45,6 +44,7 @@ app.use(function(req, res, next){
     res.locals.success     = req.flash("success");
     next();
 });
+app.locals.moment = require('moment');
 
 app.use("/", authRoutes);
 app.use("/campgrounds", campgroundRoutes);

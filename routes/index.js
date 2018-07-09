@@ -16,7 +16,11 @@ router.get('/register', function(req, res) {
 });
 
 router.post("/register", function(req, res) {
-    User.register({'username': req.body.username}, req.body.password, function(err, user){
+    var value = false;
+    if(req.body.admincode =='8364'){
+        value = true;
+    }
+    User.register({'username': req.body.username, isAdmin: value}, req.body.password, function(err, user){
         if(err){
             res.render('register', {error: err.message});
         }else{
