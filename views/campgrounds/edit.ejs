@@ -20,6 +20,18 @@
                     <td><p></p></td>
                 </tr>
                 <tr class = "form-group">
+                    <td><input class = "form-control border border-secondary" type = 'number' name = 'campground[price]' placeholder = '  Price' value="<%= campground.price %>" min="0.01" step="0.01" required></td>
+                </tr>
+                <tr>
+                    <td><p></p></td>
+                </tr>
+                <tr class = "form-group">
+                    <td><input class = "form-control border border-secondary" type = 'text' name = 'campground[location]' placeholder = '  Location' value="<%= campground.location %>" required></td>
+                </tr>
+                <tr>
+                    <td><p></p></td>
+                </tr>
+                <tr class = "form-group">
                     <td><textarea class = "form-control border border-secondary" name = 'campground[description]' placeholder = '  Description' rows="10" required><%= campground.description %></textarea></td>
                 </tr>
                 <tr><td><p></p></td></tr>

@@ -1,3 +1,6 @@
+//Importing dotenv package
+require("dotenv").config();
+
 //Importing required packages
 var express               = require('express'),
     app                   = express(),

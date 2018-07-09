@@ -1,19 +1,21 @@
 <% include ../partials/header %>
 <div class = "container margin-top">
     <div class = "row"> 
-        <div class="col-sm-12 col-md-3">
+        <div class="col-sm-12 col-md-3 mb-5">
             <p class="lead">YelpCamp</p>
             <div class="list-group">
                 <li class="list-group-item active"><a herf="#">Info 1</a></li>
                 <li class="list-group-item"><a herf="#">Info 2</a></li>
                 <li class="list-group-item"><a herf="#">Info 3</a></li>
             </div>
+            <!--The div element for the map -->
+            <div id="map" class="mt-3"></div>
         </div>
         <div class="col-sm-12 col-md-9">
             <div class="img-thumbnail">
                 <img src = "<%= campgrounds.image %>" class = "img img-fluid">
                 <div class="caption">
-                    <h4 class="float-right">$9.00/night</h4>
+                    <h4 class="float-right"> $<%= campgrounds.price %>/night</h4>
                     <h4><a herf="#"><%= campgrounds.place %></a></h4>
                     <p>
                         <em>Submitted by <%= campgrounds.user.username %></em>
@@ -59,4 +61,32 @@
         </div>
     </div>
 </div>
+<script>
+  function initMap() {
+    var latitude = <%= campgrounds.latitude%>;
+    var longitude = <%= campgrounds.longitude %>;
+    var center = {lat:latitude, lng:longitude };
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: center,
+        scrollwheel: false
+    });
+    var contentString = `
+      <strong><%= campgrounds.name %><br />
+      <%= campgrounds.location %></strong>
+      <p><%= campgrounds.description %></p>
+    `
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    var marker = new google.maps.Marker({
+        position: center,
+        map: map
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkawyIoFUVMjMZ3b-3gKuGHC0dYtDPnnk&callback=initMap"></script>
 <% include ../partials/footer %>
