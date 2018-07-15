@@ -2,8 +2,11 @@
 <html>
     <head>
         <title>
-            POst Demo
+            YelpCamp
         </title>
+        <!-- link for an title icon -->
+        <link rel="icon" href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAQeSURBVGhD7ZZJaBRBFIa7e8wk0YAbKu64giseDF48iNtFcDnoRRMUDXpQUQwRg1suKqJiVNwS4xJNnEQSdZJJYjQzE0URXNFD9CRRDyKKOyrjK1811UP39OtZejou0D98h6mqnvpfV/9VJbly5cqVK1d/S+DzlEMos5aFM2ucAMLeQvHXf05QqxSy4xJjlzwMTTgCvhRgIe9iMUXXC6oyJkOZ/EsthBPIII3ZAcKZn+FmxgQxVdeJ1UheOCO/jxbBKZMZu+4ljdkBV+YZa5V6iim7Ruy8EjIUoXEWiwnRxuyAxdQzJsliWmcVzYUVNc7lhQMhb7GY2jmZcoFEjuEq6H6r+B3NSwSZKyykLzIXyKfSbobfKieRVgfzEva+hRtZw4WV9GSVi8493U1tKqdxpYK0MTtgXu7DbSlb2LGneLl4vKMX2a5S7XBewt4KYSl1UbnQ418/iGyPcgU/PcKUXTAvq4W15GWVCz0Hlo4l26OcQFocPV9+QHv2NGExOVmeFzqK5k9mXw4RgddT4XBewt6X0J7TT9iMr4TnBQLIylm57MXuHmS/gQsKacouWEwQvxiPsEsrUS403uzPZHkzprHbW/qS/SbqHM/LfmHZrGRyofFgW2+1kEtrh5D9JnhemmwclvzaE8KcXcdnW/FlNOPqNsoMGuV3wrZZyeRCg+9YvJDD+WPIfpJTmJe2OOEPYt8NzTBu3wEc78fnCKBJCQvbZuFB9oE0QHB8+Si1kOKFk8h+SyrxjfK33KY3jG0N2EcYtgKuKdb3MDiv3CEnJ9i2aKJayIqZuewXdeeKR4P1m04WaJaGCttmgU8uISeOge9Yq2bnqoVw3uzLIseR8LsYYSwVMB/fhGVaUCeNIiePQduxNB5uj3NViaXSgdVoUp4Iy9aCCvk7aUDH3eI+hkIurxtMjiOpcaIQ+aiway04p3SQBnRUrxlmKKR0WQo7Vz0GmzCXEoFu04Vda8FFTzlpQMeuJeMMhWycN4UcR+JPrxBokCPCanyBzzOHNCDgQS+YPdVQCOdzojuXhj+9TwsCSqewmljxriiv9mabiuA83dmTHG8iza0Xg14nbCYW5uQ1aQJp39yPLKRhw0ByvIEyhDCXCtCiLBM2EwuqlaukEaRi5QiykCN5o8nxBhzYellQyhI2Ewt8GQWkEYRfSahCkgp8GlsvHoIfU/qsuLDqHPW2GmPk62EPyyeK0PhwEO9PMc8YSGHrFcZvQbOyGVqk/sJa6oIqJQBnlZdwGv/wlPyTF/YYT3CqAI17W3vTBWjE2XodM56MnpfmjA+WDFjbvGVQWX3hkLaq9cM6ygtGvj2YP/ZbyZLxkaZNAyPUSkbR7Vh/1LhdgU8aAbWeBXBRKcID9oS6upXKIzwD2v5p465cuXLlytX/LUn6DZ1hydkqUWOGAAAAAElFTkSuQmCC'>
+        <a href="https://icons8.com">Icon pack by Icons8</a>
         <!-- Make site responsive on mobile/tablet -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -13,7 +16,7 @@
 <body>
     
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <a class="navbar-brand btn btn-light" href="/campgrounds">
+    <a class="navbar-brand btn btn-light" href="/">
         <i class="fas fa-fire"></i>  YelpCamp
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +36,7 @@
                 </li>
             <% }else { %>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-light" href="#">Welcome <%= currentUser.username %></a>
+                    <a class="nav-link btn btn-light" href="#">Welcome <%= currentUser.firstname %></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link btn btn-light" href="/logout">Logout</a>

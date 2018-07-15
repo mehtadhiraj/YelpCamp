@@ -1,0 +1,13 @@
+<%- include('partials/header'); -%>
+    <div class="container margin-top">
+        <h3 align="center">Forgot Password</h3><P></P>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 offset-md-3">
+                <form class="form" action="/forgot" method="POST" >
+                    <input class="form-control border border-secondary" type="email" name="email" placeholder="  Eamil" required><p></p>
+                    <button class="btn btn-lg btn-secondary float-right">Submit</button>
+                </form>  
+            </div>
+        </div>
+    </div>
+<%- include('partials/footer'); -%>

@@ -1,11 +1,20 @@
 <%- include('partials/header'); -%>
     <div class="container margin-top">
-        <h1 align="center">Sign up</h1><P></P>
+        <h3 align="center">Sign up</h3><P></P><p></p>
         <div class="row">
             <div class="col-sm-12 col-md-6 offset-md-3">
                 <form class="form" action="/register" method="POST" >
-                    <input class="form-control border border-secondary" type="text" name="username" placeholder="  Enter your Username" required><P></P>
-                    <input class="form-control border border-secondary" type="password" name="password" placeholder="  Enter your Password" required><p></p>
+                    <div class="row">
+                        <div class="col-6 col-sm-6 col-md-6">
+                            <input class="form-control border border-secondary" type="text" name="firstname" placeholder="  First Name" required>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6">
+                            <input class="form-control border border-secondary" type="text" name="lastname" placeholder="  Lastname" required>
+                        </div>
+                    </div><p></p>
+                    <input class="form-control border border-secondary" type="text" name="username" placeholder="  Username" required><P></P>
+                    <input class="form-control border border-secondary" type="email" name="email" placeholder="  email" required><P></P>
+                    <input class="form-control border border-secondary" type="password" name="password" placeholder="  Password" required><p></p>
                     <input class="form-control border border-secondary" type="password" name="admincode" placeholder=" Admin Code (optional)"><p></p>
                     <button class="btn btn-secondary container">Sign up</button>
                 </form>  
