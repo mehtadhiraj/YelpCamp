@@ -15,15 +15,27 @@ var geocoder = nodeGeocoder(options);
 
 //Call to a campgrounds page
 router.get('/', function(req,res){
-    // Get campgrounds from database
-    Campground.find({},function(error, campgrounds){
-        if(error){
-            req.flash("error", error.message);
-            res.redirect("back");
-        }else {
-            res.render("campgrounds/campground",{campgrounds : campgrounds});
-        }
-    });
+    if(req.query.search){
+        // Get campgrounds from database
+        Campground.find({'place': { $regex : RegExp(escapeRegExp(req.query.search)), $options: 'i'}},function(error, campgrounds){
+            if(error){
+                req.flash("error", error.message);
+                res.redirect("back");
+            }else {
+                res.render("campgrounds/campground",{campgrounds : campgrounds});
+            }
+        });
+    }else {
+        // Get campgrounds from database
+        Campground.find({},function(error, campgrounds){
+            if(error){
+                req.flash("error", error.message);
+                res.redirect("back");
+            }else {
+                res.render("campgrounds/campground",{campgrounds : campgrounds});
+            }
+        });   
+    }
 });
 
 router.post("/", middlewareObject.isLoggedIn, function(req,res){
@@ -71,8 +83,13 @@ router.get("/:id",function(req, res){
             req.flash('error', 'Campground not available');
             return res.redirect('back');
         }else {
-            //Rendering a show page
-            res.render("campgrounds/show", {campgrounds:findCampground});
+            if(!findCampground) {
+                req.flash('error', 'Campground is deleted');
+                return res.redirect('/campgrounds');
+            }else {
+                //Rendering a show page
+                res.render("campgrounds/show", {campgrounds:findCampground});   
+            }
         }
     });
 });
@@ -115,9 +132,13 @@ router.delete('/delete/:id', middlewareObject.checkCampgroundOwnership, function
             res.redirect('back');
         }else{
             req.flash('success', "Campground deleted successfully");
-            res.redirect('/campgrounds');
+            return res.redirect('/campgrounds');
         }
     });
 })
+
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
 
 module.exports = router;

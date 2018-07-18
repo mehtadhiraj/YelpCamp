@@ -24,6 +24,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
         <ul class="navbar-nav ml-md-auto">
+            <li align = "center">
+                <form class="col-sm-12 col-md-4 col-lg-12 offset-md-4 offset-lg-0" action="/campgrounds" method="GET">
+                    <div class="input-group mt-1">
+                        <input class="form-control" type="text" name="search" placeholder="  Search..">
+                        <div class="input-group-prepend">
+                            <button class="input-group-text bg-light form-control" id="basic-addon1">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </li>
             <li class="nav-item">
                 <a class="nav-link btn btn-light" href="/campgrounds">Campgrounds</a>
             </li>
