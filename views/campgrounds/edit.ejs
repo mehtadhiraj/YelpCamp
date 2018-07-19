@@ -1,0 +1,32 @@
+<% include ../partials/header %>
+    <div class = 'container margin-top'>
+        <h3 align = 'center'>Edit a new Camp Ground</h3><br>   
+    </div>
+    
+    
+    <form method = 'POST' action = '/campgrounds/edit/<%= campground._id %>?_method=PUT' align = 'center'>
+        <div class = 'table-responsive container col-md-6'>
+            <table align = 'center' class = 'container'>
+                <tr class = "form-group">
+                    <td><input class = "form-control border border-secondary" type = 'text' name = 'campground[place]' placeholder = '  Camp Place' value="<%= campground.place %>" required></td>
+                </tr>
+                <tr>
+                    <td><p></p></td>
+                </tr>
+                <tr class = "form-group">
+                    <td><input class = "form-control border border-secondary" type = 'text' name = 'campground[image]' placeholder = '  Image URL' value="<%= campground.image %>" required></td>
+                </tr>
+                <tr>
+                    <td><p></p></td>
+                </tr>
+                <tr class = "form-group">
+                    <td><textarea class = "form-control border border-secondary" name = 'campground[description]' placeholder = '  Description' rows="10" required><%= campground.description %></textarea></td>
+                </tr>
+                <tr><td><p></p></td></tr>
+            </table>
+            <p class = "form-group">
+                <button class="btn btn-lg btn-primary container">Update Campground</button>            
+            </p>
+        </div>
+    </form>
+<% include ../partials/footer %>

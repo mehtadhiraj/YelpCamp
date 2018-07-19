@@ -1,9 +1,9 @@
 <% include ../partials/header %>
 
-<header class = 'jumbotron container margin-top'>
+<header class = 'jumbotron campgroundgBg container margin-top'>
   <div class = "container">
-      <h1 class="col-sm-12"><i class="fas fa-fire"></i>  Welcome to YelpCamp</h1>
-      <p>
+      <h1 class="col-sm-12 col-md-12" id="newCampHeader"><i class="fas fa-fire"></i>  Welcome to YelpCamp</h1>
+      <p id="newCampHeader">
           Here are some hand picked campgrounds
       </p>
   </div>  
@@ -12,8 +12,8 @@
         <div class="row flex">
             <% campgrounds.forEach(function(camp){ %>
                 <div class="col-lg-3 col-sm-6">     
-                    <div class = 'rounded img-fluid img-thumbnail'>
-                        <img class="img" src = <%= camp.image %>>
+                    <div class = 'rounded img-fluid img-thumbnail mt-3'>
+                        <img class="img height" src = <%= camp.image %>>
                         <div>    
                             <div align = "center" class="margin">
                                 <h4><%= camp.place  %></h4>
