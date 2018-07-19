@@ -69,7 +69,7 @@ router.post("/", middlewareObject.isLoggedIn, /*upload.single('image')*/ functio
         // cloudinary.uploader.upload(req.file.path, function(result){
         //     console.log(result);
         //     //Getting image url from the result 
-            var image = req.image.body;
+            var image = req.body.image;
             //Fetching place, price and description from textfield
             var place = req.body.place;
             var price = req.body.price;
