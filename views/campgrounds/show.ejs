@@ -18,13 +18,13 @@
                     <h4 class="float-right"> $<%= campgrounds.price %>/night</h4>
                     <h4><a herf="#"><%= campgrounds.place %></a></h4>
                     <p>
-                        <em>Submitted by <%= campgrounds.user.username %></em>
+                        <em>Submitted by <%= campgrounds.user.username %> , <%= moment(campgrounds.createdAt).fromNow() %></em>
                     </p>
                     <p>
                         <%= campgrounds.description %>
                     </p>
                     <P>
-                        <% if(currentUser && campgrounds.user.id.equals(currentUser._id)) {%>
+                        <% if(currentUser && campgrounds.user.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) {%>
                             <form class="display-inline" action="/campgrounds/delete/<%= campgrounds._id %>?_method=DELETE" method="POST">
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </form>
@@ -45,8 +45,8 @@
                         <div class="col-sm-12 col-md-12">
                             <strong><%= comment.name.username %></strong>
                             <span class="float-right">
-                                10 days ago<br>
-                                <% if(currentUser && comment.name.id.equals(currentUser._id)) { %>
+                                <%= moment(comment.createdAt).fromNow() %><br>
+                                <% if(currentUser && comment.name.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
                                     <form class="display-inline" action="/campgrounds/<%= campgrounds._id %>/comments/delete/<%= comment._id%>?_method=DELETE" method="POST">
                                         <button class="btn btn-sm btn-danger">Delete</button>
                                     </form>
