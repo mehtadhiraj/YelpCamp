@@ -18,16 +18,25 @@ router.get("/new",isLoggedIn, function(req, res){
 
 router.post("/", isLoggedIn, function(req, res){
     var text = req.body.text;
-    var name = req.body.name;
-    Comment.create({text:text, name:name},function(error,comment){
-        console.log(comment);
-       Campground.findById(req.params.id,function(error, foundCampground) {
-           console.log(foundCampground);
-           foundCampground.comments.push(comment);
-           foundCampground.save();
-           res.redirect("/campgrounds/"+req.params.id);
-       });
-       
+    Campground.findById(req.params.id,function(error, foundCampground) {
+        if(error){
+            console.log(error);
+        }else{
+            Comment.create({text:text},function(error,comment){
+                if(error){
+                    console.log(error);
+                }else{
+                    //add user to the comment
+                    comment.name.id = req.user._id;
+                    comment.name.username = req.user.username;
+                    //save comment
+                    comment.save();
+                    foundCampground.comments.push(comment);
+                    foundCampground.save();
+                    res.redirect("/campgrounds/"+req.params.id);
+                }
+            });
+        }
     });
 });
 

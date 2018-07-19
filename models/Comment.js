@@ -3,7 +3,13 @@ mongoose.connect("mongodb://localhost/Comment");
 
 var commentSchema = mongoose.Schema({
     text:String,
-    name:String
+    name:{
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        username: String
+    }
 });
 
 module.exports = mongoose.model("Comment",commentSchema);
