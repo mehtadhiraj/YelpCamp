@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/Comment");
+//mongoose.connect("mongodb://localhost/Comment");
 
 var commentSchema = mongoose.Schema({
     text:String,
