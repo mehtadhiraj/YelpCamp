@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+
+<div class = 'container margin-top'>
+    <div class = 'container'>
+        <h3 align = 'center'>Add a new Commment to <%= campground.place %></h3><br>   
+    </div>
+    
+    
+    <form method = 'POST' action = '/campgrounds/<%= campground._id %>/comments' align = 'center'>
+        <div class = 'table-responsive container col-md-6'>
+            <table align = 'center' class = 'container'>
+                <!--<tr class = "form-group">-->
+                <!--    <td><input class = "form-control" type = 'text' name = 'place' placeholder = '  Camp Place'><br><br></td>-->
+                <!--</tr>-->
+                <tr class = "form-group">
+                    <td><input class = "form-control" type = 'text' name = 'name' placeholder = '  Enter your name'><br></td>
+                </tr>
+                <tr class = "form-group">
+                    <td><textarea class = "form-control" name ='text' placeholder = '  Add your comment here' rows="7"></textarea><br></td>
+                </tr>
+            </table>
+            <p class = "form-group">
+                <button class="btn btn-lg btn-outline-secondary btn-block container">Submit</button>            
+            </p>
+        </div>
+    </form>
+</div>
+<% include ../partials/footer %>

@@ -4,6 +4,7 @@ var express      = require('express'),
     bodyParser   = require('body-parser'),
     mongoose     = require("mongoose"),
     Campground   = require("./models/Campgrounds"),
+    Comment      = require("./models/Comment"),
     seedDB       = require("./seeds");
 
 //Connection to the database
@@ -11,24 +12,10 @@ mongoose.connect("mongodb://localhost/yelp_camp");
 
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended : true}));
-
+app.use(express.static(__dirname + "/public"));
 
 //Calling a seed function from a sedds.js
-seedDB();
-
-// Campground.create(
-//     {
-//         place : "Paris",
-//         image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8Btdf8ioCX6reMe3XqvoumHouj85oz11I1CIjJl-0cqyr4Ere",
-//         description : "This is the best plac in Paris"
-//     }, function(error, campground)
-//         {
-//             if(error){
-//             console.log('There is an error\n'+error);
-//         }else {
-//             console.log(campground);
-//         }
-//     });
+//seedDB();
 
 //Call to a Landing page 
 app.get('/',function(req,res){
@@ -42,7 +29,7 @@ app.get('/campgrounds',function(req,res){
         if(error){
             console.log('There is an error\n'+error);
         }else {
-            res.render("campground",{campgrounds : campgrounds});
+            res.render("campgrounds/campground",{campgrounds : campgrounds});
         }
     });
 });
@@ -70,10 +57,39 @@ app.get("/campgrounds/:id",function(req, res){
             console.log('There is an error\n'+error);
         }else {
             //Rendering a show page
-            res.render("show", {campgrounds:findCampground});
+            res.render("campgrounds/show", {campgrounds:findCampground});
         }
     });
 });
+
+//==============================================
+//COMMENT ROUTES
+//==============================================
+//Route for a new comments
+app.get("/campgrounds/:id/comment/new",function(req, res){
+   Campground.findById(req.params.id,function(error, foundId){
+       if(error){
+           console.log("===============================\n"+error);
+       }else{
+              res.render("comments/new",{campground:foundId}); 
+       }
+   })
+});
+
+app.post("/campgrounds/:id/comments", function(req, res){
+    var text = req.body.text;
+    var name = req.body.name;
+    Comment.create({text:text, name:name},function(error,comment){
+        console.log(comment);
+       Campground.findById(req.params.id,function(error, foundCampground) {
+           console.log(foundCampground);
+           foundCampground.comments.push(comment);
+           foundCampground.save();
+           res.redirect("/campgrounds/"+req.params.id);
+       });
+       
+    });
+})
 
 //Listening to port and IP addresses of the host
 app.listen(process.env.PORT,process.env.IP,function(req,res){
