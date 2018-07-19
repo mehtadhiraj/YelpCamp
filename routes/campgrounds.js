@@ -13,7 +13,6 @@ var options = {
     apiKey: process.env.GEOCODER_API_KEY,
     formatter: null
 };
-
 var geocoder = nodeGeocoder(options);
 
 // var storage = multer.diskStorage({
