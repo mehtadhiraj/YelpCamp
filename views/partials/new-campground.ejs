@@ -1,0 +1,27 @@
+
+<footer class = 'jumbotron container'>
+    <div class = 'container'>
+        <h3 align = 'center'>Add a new Camp Ground</h3><br>   
+    </div>
+    
+    
+    <form method = 'POST' action = '/campgrounds' align = 'center'>
+        <div class = 'table-responsive container col-md-6'>
+            <table align = 'center' class = 'container'>
+                <tr class = "form-group">
+                    <td><input class = "form-control" type = 'text' name = 'place' placeholder = '  Camp Place'><br><br></td>
+                </tr>
+                <tr class = "form-group">
+                    <td><input class = "form-control" type = 'text' name = 'image' placeholder = '  Image URL'><br><br></td>
+                </tr>
+                <tr class = "form-group">
+                    <td><textarea class = "form-control" name = 'description' placeholder = '  Description'></textarea><br><br></td>
+                </tr>
+            </table>
+            <p class = "form-group">
+                <button class="btn btn-lg btn-outline-secondary btn-block container">Submit</button>            
+            </p>
+        </div>
+    </form>
+</footer>
+
