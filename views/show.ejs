@@ -11,5 +11,9 @@
             <%= campgrounds.description %>
         </p>
     </div>
+    <h3>Comments</h3>
+    <% campgrounds.comments.forEach(function(comment){ %>
+    <p><%= comment.text %></p>
+    <% }); %>
 </div>
 <% include partials/footer %>

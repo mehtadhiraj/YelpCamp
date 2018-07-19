@@ -1,60 +1,34 @@
 //Importing required packages
-var express = require('express'),
-    app = express(),
-    bodyParser = require('body-parser'),    
-    mongoose = require("mongoose");
-    
+var express      = require('express'),
+    app          = express(),
+    bodyParser   = require('body-parser'),
+    mongoose     = require("mongoose"),
+    Campground   = require("./models/Campgrounds"),
+    seedDB       = require("./seeds");
+
 //Connection to the database
 mongoose.connect("mongodb://localhost/yelp_camp");
 
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended : true}));
 
-//Database Schema
 
-var campgroundSchema = new mongoose.Schema({
-   place : String,
-   image : String,
-   description : String
-});
+//Calling a seed function from a sedds.js
+seedDB();
 
-//Making model of database
-var Campground = mongoose.model('Campground',campgroundSchema);
-
-/*Campground.create(
-    {
-        place : "Paris",
-        image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8Btdf8ioCX6reMe3XqvoumHouj85oz11I1CIjJl-0cqyr4Ere",
-        description : "This is the best plac in Paris"
-    }, function(error, campground)
-        {
-            if(error){
-            console.log('There is an error\n'+error);
-        }else {
-            console.log(campground);
-        }
-    });*/
-    
-/*var campgrounds = [
-        {
-           place:'India', image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1jAOQfOEB_eaPmoZyNa1G6Xr8JtCD4ceM6K_nmNy9UNW70bbK'
-        },
-        {
-            place:'Paris', image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8Btdf8ioCX6reMe3XqvoumHouj85oz11I1CIjJl-0cqyr4Ere'
-        },
-        {
-            place:'Europe', image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqgJhyWXEr1RphMlL6CMpLm7nbOVg1fe1wcCZ6k_mNBeUI3rVSbQ'
-        },
-        {
-            place:'America', image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1jAOQfOEB_eaPmoZyNa1G6Xr8JtCD4ceM6K_nmNy9UNW70bbK'
-        },
-        {
-            place:'Australia', image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGCLIx3_HV6iOi_aE57hE_TEqsEggGFcHkdaQOS0h6_p51vImc'
-        },
-        {
-            place:'Europe', image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqgJhyWXEr1RphMlL6CMpLm7nbOVg1fe1wcCZ6k_mNBeUI3rVSbQ'
-        }
-    ];*/
+// Campground.create(
+//     {
+//         place : "Paris",
+//         image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8Btdf8ioCX6reMe3XqvoumHouj85oz11I1CIjJl-0cqyr4Ere",
+//         description : "This is the best plac in Paris"
+//     }, function(error, campground)
+//         {
+//             if(error){
+//             console.log('There is an error\n'+error);
+//         }else {
+//             console.log(campground);
+//         }
+//     });
 
 //Call to a Landing page 
 app.get('/',function(req,res){
@@ -91,7 +65,7 @@ app.post("/campgrounds",function(req,res){
 
 //Rendering the show on clicking the campground's button
 app.get("/campgrounds/:id",function(req, res){
-    Campground.findById(req.params.id, function(error, findCampground){
+    Campground.findById(req.params.id).populate("comments").exec( function(error, findCampground){
         if(error){
             console.log('There is an error\n'+error);
         }else {
